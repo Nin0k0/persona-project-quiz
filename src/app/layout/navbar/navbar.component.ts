@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CheckUserlogedInService } from 'src/app/shared/services/check-userloged-in.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private checkUserLogin: CheckUserlogedInService,
+    private router: Router
+  ) {}
+  user$ = this.checkUserLogin.user$;
 
+  logOut() {
+    this.checkUserLogin.removeLoggedUser();
+    this.router.navigateByUrl('authorization');
+  }
   ngOnInit(): void {}
 }

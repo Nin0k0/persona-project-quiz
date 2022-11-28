@@ -3,20 +3,36 @@
     <div class="shape"></div>
     <div class="shape"></div>
   </div>
-  <form>
+  <form [formGroup]="RegisterForm">
     <h3>Sign Up Here</h3>
     <label for="username">Name</label>
-    <input type="text" placeholder=" " id="name" />
+    <input type="text" placeholder=" " id="name" formControlName="name" />
     <label for="username">Lastname</label>
-    <input type="text" placeholder=" " id="lastname" />
+    <input
+      type="text"
+      placeholder=" "
+      id="lastname"
+      formControlName="lastName"
+    />
     <label for="username">Email</label>
-    <input type="text" placeholder=" " id="username" />
+    <input type="text" placeholder=" " id="username" formControlName="email" />
     <label for="password">Password</label>
-    <input type="password" placeholder="" id="password" />
+    <input
+      type="password"
+      placeholder=""
+      id="password"
+      formControlName="password"
+    />
     <label for="username">Is Admin?</label>
-    <input type="checkbox" placeholder=" " id="name" class="checkmark" />
+    <input
+      type="checkbox"
+      placeholder=" "
+      id="name"
+      class="checkmark"
+      formControlName="isAdmin"
+    />
 
-    <button>Sign Up</button>
+    <button (click)="signUp()">Sign Up</button>
     <div class="social">
       <div class="go">Forgot the password?</div>
     </div>

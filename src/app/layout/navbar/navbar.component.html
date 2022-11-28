@@ -1,10 +1,12 @@
 <body>
   <nav class="navMenu">
     <a [routerLink]="''">Home</a>
-    <a>Admin</a>
-    <a>Board</a>
-    <a>Play</a>
-    <a [routerLink]="'auth'">Login</a>
+    <a *ngIf="user$ | async" [routerLink]="'admin'">Admin</a>
+    <a *ngIf="user$ | async" [routerLink]="'board'">Board</a>
+    <a *ngIf="user$ | async" [routerLink]="'play'">Play</a>
+    <a [routerLink]="'auth'" *ngIf="!(user$ | async)">Login</a>
+    <a *ngIf="user$ | async" (click)="logOut()">Logout</a>
+
     <div class="dot"></div>
   </nav>
 </body>

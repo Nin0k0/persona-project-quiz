@@ -1,4 +1,21 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "nino@gmail.com",
+      "password": "Nino123",
+      "name": "Nino",
+      "Lastname": "",
+      "isAdmin": true,
+      "id": 1
+    },
+    {
+      "email": "giorg@rame.com",
+      "password": "gio123123",
+      "name": "giorgi",
+      "Lastname": "",
+      "isAdmin": true,
+      "id": 2
+    }
+  ],
   "questions": []
 }
