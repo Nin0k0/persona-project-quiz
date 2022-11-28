@@ -6,6 +6,7 @@ import { ChoiceComponent } from './choice/choice.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [LoginComponent, RegistrationComponent, ChoiceComponent],
@@ -14,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSnackBarModule,
   ],
 })
 export class AuthModule {}

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { CheckUserlogedInService } from 'src/app/shared/services/check-userloged-in.service';
 import { AuthService } from '../services/auth.service';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { InvalidSnackbarComponent } from 'src/app/shared/components/invalid-snackbar/invalid-snackbar.component';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private loggedService: CheckUserlogedInService
+    private loggedService: CheckUserlogedInService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {}
@@ -33,8 +36,13 @@ export class LoginComponent implements OnInit {
         this.loginForm.reset();
         this.router.navigateByUrl('');
       } else {
-        alert('Invalid Login');
+        this.openSnackBar();
       }
+    });
+  }
+  openSnackBar() {
+    this.snackBar.openFromComponent(InvalidSnackbarComponent, {
+      duration: 3000,
     });
   }
 }

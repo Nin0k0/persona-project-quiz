@@ -7,9 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LayoutModule } from './layout/layout.module';
 import { HttpClientModule } from '@angular/common/http';
+import { InvalidSnackbarComponent } from './shared/components/invalid-snackbar/invalid-snackbar.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, InvalidSnackbarComponent],
   providers: [],
   bootstrap: [AppComponent],
   imports: [
