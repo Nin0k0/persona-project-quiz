@@ -15,6 +15,14 @@
       "Lastname": "",
       "isAdmin": true,
       "id": 2
+    },
+    {
+      "email": "ninogachechiladze@tbcbank.com.ge",
+      "password": "hehehe",
+      "name": "Nino",
+      "Lastname": "",
+      "isAdmin": true,
+      "id": 3
     }
   ],
   "questions": []

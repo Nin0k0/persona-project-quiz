@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home/home.component';
 
 const routes: Route[] = [
   {
@@ -9,13 +10,19 @@ const routes: Route[] = [
   },
   {
     path: 'home',
-    loadChildren: () =>
-      import('./home/home.module').then((module) => module.HomeModule),
+    component: HomeComponent,
   },
   {
     path: 'auth',
     loadChildren: () =>
       import('./features/auth/auth.module').then((module) => module.AuthModule),
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./features/admin/admin.module').then(
+        (module) => module.AdminModule
+      ),
   },
 ];
 @NgModule({

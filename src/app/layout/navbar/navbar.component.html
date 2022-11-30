@@ -6,7 +6,6 @@
     <a *ngIf="user$ | async" [routerLink]="'play'">Play</a>
     <a [routerLink]="'auth'" *ngIf="!(user$ | async)">Login</a>
     <a *ngIf="user$ | async" (click)="logOut()">Logout</a>
-
     <div class="dot"></div>
   </nav>
 </body>
