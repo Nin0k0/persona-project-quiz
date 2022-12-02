@@ -2,12 +2,12 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  Inject,
   OnInit,
+  QueryList,
   ViewChild,
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HasElementRef } from '@angular/material/core/common-behaviors/color';
+
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Question } from 'src/app/interfaces/question';
 import { QuestionService } from 'src/app/shared/services/question.service';
@@ -23,13 +23,14 @@ export class QuestionFormComponent implements OnInit, AfterViewInit {
 
   add() {
     const newQuestion: Question = this.questionForm.value as Question;
-    console.log(newQuestion);
-    this.questionService.AddQuestion(newQuestion);
+    this.questionService
+      .AddQuestion(newQuestion)
+      .subscribe((res) => console.log(res));
+    this.dialogRef.close();
   }
   ngOnInit(): void {}
   constructor(
     public dialogRef: MatDialogRef<QuestionFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Question,
     private questionService: QuestionService
   ) {}
   ngAfterViewInit(): void {
@@ -45,23 +46,41 @@ export class QuestionFormComponent implements OnInit, AfterViewInit {
     this.dialogRef.close();
   }
 
-  getBase64(controllName: string) {
+  getBase64a() {
     const reader = new FileReader();
-    const file = this.fileUpload.nativeElement?.files![0];
+
+    const file = this.fileUpload.nativeElement?.files![1];
     reader.readAsDataURL(file);
     reader.onload = () => {
-      if (controllName === 'firstPicture') {
-        this.firstPicture.setValue(reader.result, { emitEvent: false });
-      }
-      if (controllName === 'secondPicture') {
-        this.secondPicture.setValue(reader.result, { emitEvent: false });
-      }
+      this.firstPicture.setValue(reader.result, { emitEvent: false });
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);
     };
   }
+  getBase64b() {
+    let files = this.fileUpload.nativeElement?.files!;
+    if (files.length !== 2) {
+      alert('Exactly 2 Pictures are needed');
+    }
 
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+      let file = files.item(i) as File;
+      console.log(file);
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        if (i == 0) {
+          this.firstPicture.setValue(reader.result, { emitEvent: false });
+        } else {
+          this.secondPicture.setValue(reader.result, { emitEvent: false });
+        }
+      };
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+    }
+  }
   public get firstPicture() {
     return this.questionForm.get('firstPicture') as FormControl;
   }

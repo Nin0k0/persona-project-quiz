@@ -11,11 +11,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 
 import { MatDialogModule } from '@angular/material/dialog';
-import { QuestionService } from 'src/app/shared/services/question.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import { HttpClientModule } from '@angular/common/http';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
-  declarations: [QuestionFormComponent],
+  declarations: [AdminComponent, QuestionFormComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

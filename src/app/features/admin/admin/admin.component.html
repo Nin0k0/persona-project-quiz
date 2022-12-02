@@ -1,3 +1,21 @@
 <body>
   <button (click)="openDialog()" class="mainButt">Add Question</button>
+
+  <div *ngFor="let question of QuestionList; let i = index" class="divofPanels">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        Question {{ i + 1 }}
+      </mat-expansion-panel-header>
+      <td>{{ question.answer }}</td>
+      <td>
+        <img [src]="question.firstPicture" alt="" width="150px" />
+      </td>
+      <td>
+        <img [src]="question.secondPicture" alt="" width="150px" />
+      </td>
+      <td>
+        <button>Delete</button>
+      </td>
+    </mat-expansion-panel>
+  </div>
 </body>

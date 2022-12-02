@@ -2,6 +2,8 @@ import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { QuestionFormComponent } from '../question-form/question-form.component';
 
 import { MatDialog } from '@angular/material/dialog';
+import { QuestionService } from 'src/app/shared/services/question.service';
+import { Question } from 'src/app/interfaces/question';
 
 @Component({
   selector: 'app-admin',
@@ -11,10 +13,17 @@ import { MatDialog } from '@angular/material/dialog';
 export class AdminComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private questionService: QuestionService
   ) {}
 
-  ngOnInit(): void {}
+  QuestionList: Question[] | undefined;
+
+  ngOnInit(): void {
+    this.questionService.getAllQuestions().subscribe((response) => {
+      this.QuestionList = response;
+    });
+  }
 
   step = 0;
 

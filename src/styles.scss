@@ -4,24 +4,6 @@
   font-family: monospace;
 }
 
-.mat-expansion-panel-header-description {
-  color: #d63afd;
-  background-color: #646363;
-  margin-left: 43vh;
-}
-
-#mat-expansion-panel-header-0 {
-  color: #d63afd;
-  background-color: #646363;
-}
-.ng-star-inserted {
-  border-radius: 0 !important;
-}
-.mat-expansion-panel-body {
-  padding: 0 !important;
-  background-color: #646363;
-}
-
 .mainButt {
   background-color: #d63afd;
   color: #ffffff;
@@ -29,4 +11,27 @@
   height: 40px;
   width: 110px;
   border-radius: 8px;
+  margin-left: 1%;
+}
+.mat-expansion-panel-header:not([aria-disabled="true"]) {
+  cursor: pointer;
+  background-color: #d63afd !important;
+  color: #ffffff;
+}
+
+.mat-expansion-panel-header:not([aria-disabled="true"]):hover {
+  cursor: pointer;
+  background-color: #eca0ff !important;
+  color: #ffffff;
+}
+
+.mat-expansion-panel-body {
+  background-color: #272727;
+  color: #ffffff;
+}
+
+mat-expansion-panel {
+  margin-left: 1% !important;
+  margin-right: 1% !important;
+  width: 50% !important;
 }

@@ -2,3 +2,15 @@ body {
   height: 100vh;
   background-color: #272727;
 }
+.divofPanels {
+  margin-top: 15px;
+  width: 100%;
+}
+
+.mat-expansion-panel td {
+  width: 20%;
+}
+
+.divofPanels mat-expansion-panel {
+  width: 100%;
+}

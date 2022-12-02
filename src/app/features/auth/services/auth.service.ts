@@ -7,7 +7,7 @@ import { User } from 'src/app/interfaces/user';
   providedIn: 'root',
 })
 export class AuthService {
-  private localURL = 'http://localhost:3000/users';
+  localURL = 'http://localhost:3000/users';
   constructor(private http: HttpClient) {}
 
   signUp(user: User) {

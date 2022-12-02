@@ -1,6 +1,6 @@
 <form [formGroup]="questionForm">
-  <input #fileUpload type="file" (input)="getBase64('firstPicture')" />
-  <input type="file" (input)="getBase64('secondPicture')" />
+  <input #fileUpload type="file" (input)="getBase64b()" multiple />
+
   <label for="answer"> Answer</label>
   <input
     type="text"
