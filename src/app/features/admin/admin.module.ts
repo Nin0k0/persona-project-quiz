@@ -1,19 +1,32 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminComponent } from './admin/admin.component';
+
 import { AdminRoutingModule } from './admin-routing.module';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { QuestionFormComponent } from './question-form/question-form.component';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { QuestionService } from 'src/app/shared/services/question.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [QuestionFormComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatInputModule,
+    HttpClientModule,
   ],
 })
 export class AdminModule {}

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
+import { QuestionFormComponent } from '../question-form/question-form.component';
+
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin',
@@ -6,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  constructor() {}
+  constructor(
+    public dialog: MatDialog,
+    private viewContainerRef: ViewContainerRef
+  ) {}
 
   ngOnInit(): void {}
 
@@ -22,5 +28,11 @@ export class AdminComponent implements OnInit {
 
   prevStep() {
     this.step--;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(QuestionFormComponent, {
+      viewContainerRef: this.viewContainerRef,
+    });
   }
 }

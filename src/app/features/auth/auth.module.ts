@@ -7,6 +7,10 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [LoginComponent, RegistrationComponent, ChoiceComponent],
@@ -16,6 +20,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatSelectModule,
   ],
 })
 export class AuthModule {}

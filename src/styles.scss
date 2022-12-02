@@ -4,6 +4,29 @@
   font-family: monospace;
 }
 
-body {
-  height: 40vh;
+.mat-expansion-panel-header-description {
+  color: #d63afd;
+  background-color: #646363;
+  margin-left: 43vh;
+}
+
+#mat-expansion-panel-header-0 {
+  color: #d63afd;
+  background-color: #646363;
+}
+.ng-star-inserted {
+  border-radius: 0 !important;
+}
+.mat-expansion-panel-body {
+  padding: 0 !important;
+  background-color: #646363;
+}
+
+.mainButt {
+  background-color: #d63afd;
+  color: #ffffff;
+  border: none;
+  height: 40px;
+  width: 110px;
+  border-radius: 8px;
 }
