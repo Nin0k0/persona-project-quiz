@@ -18,6 +18,7 @@ export class RegistrationComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
+    score: new FormControl(0),
     isAdmin: new FormControl(false, [Validators.required]),
   });
   signUp() {

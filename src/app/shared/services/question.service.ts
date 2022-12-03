@@ -10,12 +10,14 @@ export class QuestionService {
   constructor(private http: HttpClient) {}
 
   AddQuestion(quest: Question) {
-    console.log(this.localURL);
-    console.log(quest);
     return this.http.post<Question>(this.localURL, quest);
   }
 
   getAllQuestions() {
     return this.http.get<Question[]>(this.localURL);
+  }
+
+  deleteQuestion(questionId: number) {
+    return this.http.delete(`${this.localURL}/${questionId}`);
   }
 }

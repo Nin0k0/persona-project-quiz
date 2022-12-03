@@ -24,6 +24,13 @@ const routes: Route[] = [
         (module) => module.AdminModule
       ),
   },
+  {
+    path: 'leaderboard',
+    loadChildren: () =>
+      import('./features/leaderboard/leaderboard.module').then(
+        (module) => module.LeaderboardModule
+      ),
+  },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

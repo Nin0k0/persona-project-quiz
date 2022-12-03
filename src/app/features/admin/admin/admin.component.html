@@ -14,8 +14,11 @@
         <img [src]="question.secondPicture" alt="" width="150px" />
       </td>
       <td>
-        <button>Delete</button>
+        <button class="darkButt" (click)="delete(question.id, i)">
+          Delete
+        </button>
       </td>
     </mat-expansion-panel>
   </div>
+  <app-question-rules></app-question-rules>
 </body>

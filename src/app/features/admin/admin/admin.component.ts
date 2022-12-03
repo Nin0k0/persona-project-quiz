@@ -4,6 +4,7 @@ import { QuestionFormComponent } from '../question-form/question-form.component'
 import { MatDialog } from '@angular/material/dialog';
 import { QuestionService } from 'src/app/shared/services/question.service';
 import { Question } from 'src/app/interfaces/question';
+import { tap, retry, catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -11,6 +12,7 @@ import { Question } from 'src/app/interfaces/question';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
+  windowScrolling: any;
   constructor(
     public dialog: MatDialog,
     private viewContainerRef: ViewContainerRef,
@@ -20,9 +22,7 @@ export class AdminComponent implements OnInit {
   QuestionList: Question[] | undefined;
 
   ngOnInit(): void {
-    this.questionService.getAllQuestions().subscribe((response) => {
-      this.QuestionList = response;
-    });
+    this.getQuestions();
   }
 
   step = 0;
@@ -40,8 +40,37 @@ export class AdminComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(QuestionFormComponent, {
+    const dialog = this.dialog.open(QuestionFormComponent, {
       viewContainerRef: this.viewContainerRef,
     });
+
+    dialog.afterClosed().subscribe(() => {
+      // Do stuff after the dialog has closed
+      this.getQuestions();
+    });
   }
+
+  getQuestions() {
+    this.questionService.getAllQuestions().subscribe((response) => {
+      this.QuestionList = response;
+    });
+  }
+  delete(questionId: number, index: number) {
+    this.questionService
+      .deleteQuestion(questionId)
+      .pipe(
+        tap(() => {
+          this.QuestionList!.splice(index, 1);
+        }),
+        retry(2),
+        catchError(() => {
+          alert('Enecpexted Error Occured!');
+          return of(null);
+        })
+      )
+      .subscribe();
+  }
+}
+function getQuestions() {
+  throw new Error('Function not implemented.');
 }
