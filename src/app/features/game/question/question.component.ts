@@ -7,7 +7,8 @@ import { Question } from 'src/app/interfaces/question';
   styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent implements OnInit {
-  @Input() currentQuestion: Question | undefined;
+  @Input()
+  currentQuestion!: Question;
 
   constructor() {}
 

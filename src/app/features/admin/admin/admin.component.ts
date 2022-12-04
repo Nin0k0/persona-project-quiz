@@ -71,6 +71,3 @@ export class AdminComponent implements OnInit {
       .subscribe();
   }
 }
-function getQuestions() {
-  throw new Error('Function not implemented.');
-}

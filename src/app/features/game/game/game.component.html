@@ -1,2 +1,13 @@
-<p>game works!</p>
-<app-question [currentQuestion]="currentQuestion"> </app-question>
+<button (click)="Play()" *ngIf="!this.isGameStarted">Just</button>
+<div *ngIf="this.isGameStarted">
+  <div *ngFor="let question of this.QuestionList; let i = index">
+    <div class="question" *ngIf="this.currentQuestionIndex === i">
+      <div class="images">
+        <img [src]="question.firstPicture" alt="" />
+        <img [src]="question.secondPicture" alt="" />
+      </div>
+      <input *ngFor="let m of this.currentAnswerArr" type="text" />
+      <button>SKIP</button>
+    </div>
+  </div>
+</div>

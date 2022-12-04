@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Question } from 'src/app/interfaces/question';
 import { QuestionService } from 'src/app/shared/services/question.service';
 
@@ -9,12 +10,26 @@ import { QuestionService } from 'src/app/shared/services/question.service';
 })
 export class GameComponent implements OnInit {
   constructor(private questionService: QuestionService) {}
-  questions: Question[] = [];
-  currentQuestion: Question | undefined;
-
+  QuestionList: Question[] | undefined;
+  currentQuestionIndex: number = 2;
+  currentAnswerArr: string[] = [];
+  currentAnswer: string = '';
+  isGameStarted = false;
   ngOnInit(): void {
-    this.questionService
-      .getAllQuestions()
-      .subscribe((res) => (this.questions = res));
+    this.getAllQs();
+  }
+
+  getAllQs() {
+    this.questionService.getAllQuestions().subscribe((response) => {
+      this.QuestionList = response;
+    });
+  }
+
+  Play() {
+    this.isGameStarted = true;
+    this.currentAnswer = this.QuestionList![this.currentQuestionIndex].answer;
+    for (let letter of this.currentAnswer) {
+      this.currentAnswerArr.push(letter);
+    }
   }
 }

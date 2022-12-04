@@ -13,7 +13,7 @@ export class QuestionService {
     return this.http.post<Question>(this.localURL, quest);
   }
 
-  getAllQuestions() {
+  getAllQuestions(): Observable<Question[]> {
     return this.http.get<Question[]>(this.localURL);
   }
 
