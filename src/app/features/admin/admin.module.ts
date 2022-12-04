@@ -11,10 +11,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
-import { QuestionRulesComponent } from './question-rules/question-rules.component';
 
 @NgModule({
-  declarations: [AdminComponent, QuestionFormComponent, QuestionRulesComponent],
+  declarations: [AdminComponent, QuestionFormComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

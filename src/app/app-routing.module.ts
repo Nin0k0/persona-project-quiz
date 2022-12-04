@@ -31,6 +31,11 @@ const routes: Route[] = [
         (module) => module.LeaderboardModule
       ),
   },
+  {
+    path: 'game',
+    loadChildren: () =>
+      import('./features/game/game.module').then((module) => module.GameModule),
+  },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -3,7 +3,7 @@
     <a [routerLink]="''">Home</a>
     <a *ngIf="user$ | async" [routerLink]="'admin'">Admin</a>
     <a *ngIf="user$ | async" [routerLink]="'leaderboard'">Board</a>
-    <a *ngIf="user$ | async" [routerLink]="'play'">Play</a>
+    <a *ngIf="user$ | async" [routerLink]="'game'">Play</a>
     <a [routerLink]="'auth'" *ngIf="!(user$ | async)">Login</a>
     <a *ngIf="user$ | async" (click)="logOut()">Logout</a>
     <div class="dot"></div>
