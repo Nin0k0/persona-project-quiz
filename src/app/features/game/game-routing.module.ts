@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GameComponent } from './game/game.component';
+
 import { RouterModule } from '@angular/router';
+import { GameNewComponent } from './game-new/game-new.component';
 
 @NgModule({
   declarations: [],
@@ -9,7 +10,7 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {
         path: '',
-        component: GameComponent,
+        component: GameNewComponent,
       },
     ]),
   ],

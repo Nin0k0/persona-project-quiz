@@ -2,8 +2,8 @@
   <h2>Score : {{ score }}</h2>
 </div>
 
-<div *ngFor="let question of QuestionList; let i = index">
-  <div class="question" *ngIf="currentQuestionIndex === i">
+<div *ngFor="let question of questions; let i = index">
+  <div class="question" *ngIf="currentQuestion.answer === question.answer">
     <div class="images">
       <img [src]="question.firstPicture" alt="" />
       <img [src]="question.secondPicture" alt="" />
@@ -15,7 +15,6 @@
         />
       </form>
     </div>
-
-    <button>SKIP</button>
+    <button (click)="Skip()" *ngIf="skipCount === 1">SKIP</button>
   </div>
 </div>
