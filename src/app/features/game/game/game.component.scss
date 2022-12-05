@@ -24,10 +24,23 @@ input {
   height: 30px;
   font-size: 25px;
   font-weight: 700;
-  color: #d63afd;
+  color: #272727;
+  border: 1px solid #d63afd;
 }
 
 .correct {
   color: #3afd7e !important;
   border: 1px solid #3afd7e;
+}
+
+div {
+  background-color: #272727;
+  text-align: center;
+}
+
+h2 {
+  background-color: #272727;
+  color: #d63afd;
+  margin-bottom: 0;
+  font-weight: 700;
 }

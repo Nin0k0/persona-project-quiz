@@ -1,22 +1,21 @@
-<button (click)="Play()" *ngIf="!isGameStarted">Play</button>
-<div *ngIf="this.isGameStarted">
-  <div *ngFor="let question of QuestionList; let i = index">
-    <div class="question" *ngIf="currentQuestionIndex === i">
-      <div class="images">
-        <img [src]="question.firstPicture" alt="" />
-        <img [src]="question.secondPicture" alt="" />
-      </div>
-      <form action="" [formGroup]="wordForm">
+<div>
+  <h2>Score : {{ score }}</h2>
+</div>
+
+<div *ngFor="let question of QuestionList; let i = index">
+  <div class="question" *ngIf="currentQuestionIndex === i">
+    <div class="images">
+      <img [src]="question.firstPicture" alt="" />
+      <img [src]="question.secondPicture" alt="" />
+      <form action="">
         <input
-          formArrayName="letters"
-          #myInput
-          *ngFor="let m of this.currentAnswerArr; let n = index"
+          *ngFor="let n of formArr.controls"
           type="text"
-          [ngClass]="myInput.value == m ? 'correct' : ''"
-          (change)="written(myInput.value, n)"
+          [formControl]="n"
         />
       </form>
-      <button (click)="skip()">SKIP</button>
     </div>
+
+    <button>SKIP</button>
   </div>
 </div>
