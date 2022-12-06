@@ -77,3 +77,16 @@ button:hover {
   background-color: #d63afd;
   color: #ffffff;
 }
+
+.again {
+  width: 80px;
+  height: 40px;
+  border: 1px solid rgb(177, 18, 18);
+  color: rgb(177, 18, 18);
+  font-weight: 700;
+  cursor: pointer;
+}
+.again:hover {
+  background-color: rgb(177, 18, 18);
+  color: #ffffff;
+}

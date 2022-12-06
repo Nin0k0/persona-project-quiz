@@ -24,7 +24,7 @@ export class GameNewComponent implements OnInit {
   currentAnswerArr: string[] = [];
   timeLeft: number = 15;
 
-  isGameOver: boolean = false;
+  isGameOver: boolean = true;
   constructor(
     private questionService: QuestionService,
     private snackBar: MatSnackBar,
@@ -36,6 +36,11 @@ export class GameNewComponent implements OnInit {
   }
 
   getQuestions() {
+    this.timeLeft = 15;
+    this.skipCount = 1;
+    this.score = 0;
+    this.isGameOver = false;
+    this.clearformArray();
     this.questionService.getAllQuestions()!.subscribe((response) => {
       this.questions = response;
       this.main();
@@ -129,7 +134,8 @@ export class GameNewComponent implements OnInit {
   observableTimer() {
     const source = timer(1000, 1000);
     const abc = source.subscribe((val) => {
-      if (this.subscribeTimer == 0) {
+      if (this.subscribeTimer == 1) {
+        abc.unsubscribe();
         this.isGameOver = true;
         this.getUserAndUpdateIFScoreHigher();
       }
@@ -143,9 +149,13 @@ export class GameNewComponent implements OnInit {
       if (data) {
         if (data.score < this.score) {
           data.score = this.score;
-          this.authService.updateUser(data);
+          this.authService.updateUser(data).subscribe();
         }
       }
     });
+  }
+
+  PlayAgain() {
+    this.getQuestions();
   }
 }

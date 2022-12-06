@@ -2,7 +2,7 @@
   <h2>Score : {{ score }}</h2>
 </div>
 <div *ngIf="!isGameOver">
-  <h2 style="float: right; margin-right: 5%">00 : {{ subscribeTimer }}</h2>
+  <h2 style="float: right; margin-right: 5%">{{ subscribeTimer }}</h2>
 </div>
 
 <div *ngIf="!isGameOver">
@@ -28,3 +28,6 @@
 </div>
 
 <app-game-over *ngIf="isGameOver"></app-game-over>
+<button class="again" *ngIf="isGameOver" (click)="PlayAgain()">
+  Play Again
+</button>
