@@ -7,7 +7,7 @@
   <div class="line-1"></div>
   <div class="userCard" *ngFor="let user of users; let i = index">
     <tr>
-      <td>{{ i + 1 }}</td>
+      <td class="place">{{ i + 1 }}</td>
       <td>{{ user.name + " " + user.lastName }}</td>
       <td>{{ user.score }}</td>
     </tr>

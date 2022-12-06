@@ -17,12 +17,12 @@ tr {
 
 td,
 th {
-  width: 150px;
-  height: 70px !important;
+  width: 250px;
+  height: 40px !important;
 }
 
 .line-1 {
-  height: 0.5px;
+  height: 0.25px;
   background: #d63afd;
   margin-right: 25%;
   margin-left: 25%;
@@ -34,4 +34,9 @@ th {
 
 td {
   vertical-align: middle;
+  text-transform: uppercase;
+}
+
+td.place {
+  font-size: 40px;
 }

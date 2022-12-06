@@ -26,6 +26,78 @@
       "score": 4,
       "isAdmin": false,
       "id": 7
+    },
+    {
+      "email": "fe@gmail.com",
+      "password": "dfdfdf",
+      "name": "elis",
+      "lastName": "noz",
+      "score": 0,
+      "isAdmin": false,
+      "id": 8
+    },
+    {
+      "email": "sdsdg@rame.com",
+      "password": "sdsdsdsd",
+      "name": "giorgi",
+      "lastName": "gache",
+      "score": 0,
+      "isAdmin": false,
+      "id": 9
+    },
+    {
+      "email": "sdssddddddddddddd@yahoo.com",
+      "password": "sdsdsd",
+      "name": "sdsd",
+      "lastName": "sdddddddddddd",
+      "score": 0,
+      "isAdmin": false,
+      "id": 10
+    },
+    {
+      "email": "saqartvelo@gmail.com",
+      "password": "ninonino",
+      "name": "me",
+      "lastName": "var",
+      "score": 0,
+      "isAdmin": false,
+      "id": 11
+    },
+    {
+      "email": "givichvenvartgivi@gmail.com",
+      "password": "mtebi1",
+      "name": "grenlandia",
+      "lastName": "gaitanet",
+      "score": 0,
+      "isAdmin": true,
+      "id": 12
+    },
+    {
+      "email": "bacho@mail.ru",
+      "password": "hehe",
+      "name": "Bacho",
+      "lastName": "kuxianidze",
+      "score": 0,
+      "isAdmin": false,
+      "id": 13
+    },
+    {
+      "email": "vinme@gmail.com",
+      "password": "sfsffff",
+      "name": "vinme",
+      "lastName": "vinme",
+      "score": 0,
+      "isAdmin": false,
+      "id": 14
+    },
+    {
+      "email": "ninogachechiladze@tbcbank.com.ge",
+      "password": "zsssssssss",
+      "name": "nino",
+      "lastName": "Gachechiladze",
+      "score": 0,
+      "isAdmin": false,
+      "id": 15
     }
   ],
   "questions": [
