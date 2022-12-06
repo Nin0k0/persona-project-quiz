@@ -33,4 +33,8 @@ export class AuthService {
       })
     );
   }
+
+  updateUser(user: User) {
+    return this.http.put<User>(`${this.localURL}/${user.id}`, user);
+  }
 }

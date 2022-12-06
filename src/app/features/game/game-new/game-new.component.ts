@@ -1,4 +1,3 @@
-import { NgIfContext } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -6,7 +5,9 @@ import { map } from 'rxjs';
 import { Question } from 'src/app/interfaces/question';
 import { QuestionService } from 'src/app/shared/services/question.service';
 import { CorrectComponent } from '../correct/correct.component';
-
+import { timer } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthService } from '../../auth/services/auth.service';
 @Component({
   selector: 'app-game-new',
   templateUrl: './game-new.component.html',
@@ -15,15 +16,20 @@ import { CorrectComponent } from '../correct/correct.component';
 export class GameNewComponent implements OnInit {
   score: number = 0;
   skipCount: number = 1;
-  constructor(
-    private questionService: QuestionService,
-    private snackBar: MatSnackBar
-  ) {}
+  subscribeTimer!: number;
   formArr = new FormArray<FormControl<string>>([]);
   questions!: Question[];
   currentQuestion!: Question;
   currentAnswerArr: string[] = [];
+  timeLeft: number = 10;
 
+  isGameOver: boolean = false;
+  constructor(
+    private questionService: QuestionService,
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private authService: AuthService
+  ) {}
   ngOnInit(): void {
     this.getQuestions();
   }
@@ -32,6 +38,7 @@ export class GameNewComponent implements OnInit {
     this.questionService.getAllQuestions()!.subscribe((response) => {
       this.questions = response;
       this.main();
+      this.observableTimer();
     });
   }
 
@@ -99,6 +106,8 @@ export class GameNewComponent implements OnInit {
 
     if (this.questions.length < 0) {
       //gadavide sxva mode-ze da morches kitxvebi
+      this.isGameOver = true;
+      this.getUserAndUpdateIFScoreHigher();
     }
     while (this.formArr.length !== 0) {
       this.formArr.removeAt(0);
@@ -114,5 +123,26 @@ export class GameNewComponent implements OnInit {
   Skip() {
     this.nextActions();
     this.skipCount -= 1;
+  }
+
+  observableTimer() {
+    const source = timer(1000, 2000);
+    const abc = source.subscribe((val) => {
+      console.log(val, '-');
+      if (this.subscribeTimer == 0) {
+        this.isGameOver = true;
+        this.getUserAndUpdateIFScoreHigher();
+      }
+      this.subscribeTimer = this.timeLeft - val;
+    });
+  }
+
+  getUserAndUpdateIFScoreHigher() {
+    let user = JSON.parse(localStorage.getItem('user')!);
+    console.log(user);
+    if (this.score > user.score) {
+      user.score = this.score;
+      this.authService.updateUser(user);
+    }
   }
 }

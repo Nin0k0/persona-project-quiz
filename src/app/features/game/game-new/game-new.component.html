@@ -1,20 +1,30 @@
-<div>
+<div *ngIf="!isGameOver">
   <h2>Score : {{ score }}</h2>
 </div>
+<div *ngIf="!isGameOver">
+  <h2 style="float: right; margin-right: 5%">00 : {{ subscribeTimer }}</h2>
+</div>
 
-<div *ngFor="let question of questions; let i = index">
-  <div class="question" *ngIf="currentQuestion.answer === question.answer">
-    <div class="images">
-      <img [src]="question.firstPicture" alt="" />
-      <img [src]="question.secondPicture" alt="" />
-      <form action="">
-        <input
-          *ngFor="let n of formArr.controls"
-          type="text"
-          [formControl]="n"
-        />
-      </form>
+<div *ngIf="!isGameOver">
+  <div *ngFor="let question of questions; let i = index">
+    <div class="question" *ngIf="currentQuestion.answer === question.answer">
+      <div class="par">
+        <div class="container">
+          <img [src]="question.firstPicture" alt="" />
+          <img [src]="question.secondPicture" alt="" />
+          <br />
+        </div>
+        <form action="">
+          <input
+            *ngFor="let n of formArr.controls"
+            type="text"
+            [formControl]="n"
+          />
+        </form>
+      </div>
+      <button (click)="Skip()" *ngIf="skipCount === 1">S K I P</button>
     </div>
-    <button (click)="Skip()" *ngIf="skipCount === 1">SKIP</button>
   </div>
 </div>
+
+<app-game-over *ngIf="isGameOver"></app-game-over>
