@@ -22,7 +22,7 @@ export class GameNewComponent implements OnInit {
   questions!: Question[];
   currentQuestion!: Question;
   currentAnswerArr: string[] = [];
-  timeLeft: number = 90;
+  timeLeft: number = 60;
 
   isGameOver: boolean = true;
   constructor(
@@ -36,7 +36,7 @@ export class GameNewComponent implements OnInit {
   }
 
   getQuestions() {
-    this.timeLeft = 10;
+    this.timeLeft = 60;
     this.skipCount = 1;
     this.score = 0;
     this.isGameOver = false;
