@@ -22,7 +22,7 @@ export class GameNewComponent implements OnInit {
   questions!: Question[];
   currentQuestion!: Question;
   currentAnswerArr: string[] = [];
-  timeLeft: number = 15;
+  timeLeft: number = 90;
 
   isGameOver: boolean = true;
   constructor(
@@ -36,7 +36,7 @@ export class GameNewComponent implements OnInit {
   }
 
   getQuestions() {
-    this.timeLeft = 15;
+    this.timeLeft = 10;
     this.skipCount = 1;
     this.score = 0;
     this.isGameOver = false;
@@ -109,8 +109,8 @@ export class GameNewComponent implements OnInit {
     //გავასუფთავო ფორმერეეი
     this.clearformArray();
     //შევქმნა თავიდან  ფორმერრეი
-
-    if (this.questions.length < 0) {
+    console.log(this.questions.length);
+    if (this.questions.length < 1) {
       //gadavide sxva mode-ze da morches kitxvebi
       this.isGameOver = true;
       this.getUserAndUpdateIFScoreHigher();
@@ -135,9 +135,9 @@ export class GameNewComponent implements OnInit {
     const source = timer(1000, 1000);
     const abc = source.subscribe((val) => {
       if (this.subscribeTimer == 1) {
-        abc.unsubscribe();
-        this.isGameOver = true;
         this.getUserAndUpdateIFScoreHigher();
+        this.isGameOver = true;
+        abc.unsubscribe();
       }
       this.subscribeTimer = this.timeLeft - val;
     });

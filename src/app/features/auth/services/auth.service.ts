@@ -46,4 +46,8 @@ export class AuthService {
       })
     );
   }
+
+  getAllUsers() {
+    return this.http.get<User[]>(this.localURL);
+  }
 }

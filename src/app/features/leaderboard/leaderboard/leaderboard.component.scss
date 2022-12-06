@@ -1,0 +1,37 @@
+.userCard {
+  text-align: center;
+}
+
+tr {
+  width: 50% !important;
+  display: inline;
+}
+
+.main {
+  text-align: center;
+  height: 100vh;
+  background-color: #272727;
+  color: #d63afd;
+  margin: 0 auto;
+}
+
+td,
+th {
+  width: 150px;
+  height: 70px !important;
+}
+
+.line-1 {
+  height: 0.5px;
+  background: #d63afd;
+  margin-right: 25%;
+  margin-left: 25%;
+}
+
+th {
+  vertical-align: bottom;
+}
+
+td {
+  vertical-align: middle;
+}

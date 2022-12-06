@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/interfaces/user';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-leaderboard',
@@ -6,7 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./leaderboard.component.scss'],
 })
 export class LeaderboardComponent implements OnInit {
-  constructor() {}
+  constructor(private userService: AuthService) {}
+  users!: User[];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.userService.getAllUsers()!.subscribe((response) => {
+      this.users = response;
+      if (this.users.length < 10) {
+        //
+      }
+    });
+  }
 }
