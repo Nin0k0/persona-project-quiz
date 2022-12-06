@@ -2,7 +2,9 @@
   <h2>Score : {{ score }}</h2>
 </div>
 <div *ngIf="!isGameOver">
-  <h2 style="float: right; margin-right: 5%">{{ subscribeTimer }}</h2>
+  <h2 style="float: right; margin-right: 5%">
+    <i class="fa fa-clock-o"></i> {{ subscribeTimer }}
+  </h2>
 </div>
 
 <div *ngIf="!isGameOver">
@@ -22,11 +24,14 @@
           />
         </form>
       </div>
-      <button (click)="Skip()" *ngIf="skipCount === 1">S K I P</button>
+      <button (click)="Skip()" *ngIf="skipCount === 1" class="skip">
+        S K I P
+      </button>
     </div>
   </div>
 </div>
 <app-game-over *ngIf="isGameOver" [scoredNow]="score"></app-game-over>
 <button class="again" *ngIf="isGameOver" (click)="PlayAgain()">
   Play Again
+  <i class="fa fa-refresh fa-spin" style="font-size: 24px"></i>
 </button>

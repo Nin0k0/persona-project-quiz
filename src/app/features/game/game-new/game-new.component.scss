@@ -79,8 +79,11 @@ button:hover {
 }
 
 .again {
-  width: 80px;
-  height: 40px;
+  display: absolute !important;
+  top: 430px;
+  left: 45%;
+  width: 120px;
+  height: 60px;
   border: 1px solid rgb(177, 18, 18);
   color: rgb(177, 18, 18);
   font-weight: 700;

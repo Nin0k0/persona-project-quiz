@@ -133,7 +133,7 @@ export class GameNewComponent implements OnInit {
   }
   openSnackBar() {
     this.snackBar.openFromComponent(CorrectComponent, {
-      duration: 3000,
+      duration: 300000,
     });
   }
 

@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home/home.component';
 const routes: Route[] = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'leaderboard',
     pathMatch: 'full',
   },
   {
