@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { map } from 'rxjs';
@@ -15,6 +15,7 @@ import { User } from 'src/app/interfaces/user';
   styleUrls: ['./game-new.component.scss'],
 })
 export class GameNewComponent implements OnInit {
+  @Output() scoredNow = new EventEmitter<number>();
   score: number = 0;
   skipCount: number = 1;
   subscribeTimer!: number;
@@ -24,7 +25,7 @@ export class GameNewComponent implements OnInit {
   currentAnswerArr: string[] = [];
   timeLeft: number = 60;
 
-  isGameOver: boolean = true;
+  isGameOver: boolean = false;
   constructor(
     private questionService: QuestionService,
     private snackBar: MatSnackBar,
@@ -61,7 +62,11 @@ export class GameNewComponent implements OnInit {
 
   getWordFunc() {
     this.getRandomQuestion();
-    this.currentAnswerArr = this.currentQuestion.answer.split('');
+
+    if (this.currentQuestion) {
+      this.currentAnswerArr = this.currentQuestion.answer.split('');
+    }
+
     this.currentAnswerArr.forEach(() => {
       const fcontrol = new FormControl('', { nonNullable: true });
       fcontrol.valueChanges.subscribe((val) => {
@@ -85,14 +90,19 @@ export class GameNewComponent implements OnInit {
         })
       )
       .subscribe((data) => {
-        if (
-          data?.toLocaleLowerCase() == this.currentQuestion.answer.toLowerCase()
-        ) {
-          //დავამატო ქულა
-          this.score += 1;
-          // ჯერ წავშალო კითხვა ლისთიდან
-          this.nextActions();
-          this.openSnackBar();
+        if (data) {
+          if (this.currentQuestion) {
+            if (
+              data.toLocaleLowerCase() ==
+              this.currentQuestion.answer.toLowerCase()
+            ) {
+              //დავამატო ქულა
+              this.score += 1;
+              // ჯერ წავშალო კითხვა ლისთიდან
+              this.nextActions();
+              this.openSnackBar();
+            }
+          }
         }
       });
   }
@@ -109,10 +119,11 @@ export class GameNewComponent implements OnInit {
     //გავასუფთავო ფორმერეეი
     this.clearformArray();
     //შევქმნა თავიდან  ფორმერრეი
-    console.log(this.questions.length);
+
     if (this.questions.length < 1) {
       //gadavide sxva mode-ze da morches kitxvebi
       this.isGameOver = true;
+      this.timeLeft = 60;
       this.getUserAndUpdateIFScoreHigher();
     }
     while (this.formArr.length !== 0) {
@@ -134,9 +145,11 @@ export class GameNewComponent implements OnInit {
   observableTimer() {
     const source = timer(1000, 1000);
     const abc = source.subscribe((val) => {
-      if (this.subscribeTimer == 1) {
+      if (this.subscribeTimer == 1 || this.questions.length < 1) {
         this.getUserAndUpdateIFScoreHigher();
         this.isGameOver = true;
+        this.timeLeft = 60;
+        this.scoredNow.emit(this.score);
         abc.unsubscribe();
       }
       this.subscribeTimer = this.timeLeft - val;

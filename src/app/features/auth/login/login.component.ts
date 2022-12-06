@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       if (data) {
         this.loggedService.setLoggedUser(loginUser);
         this.loginForm.reset();
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('leaderboard');
       } else {
         this.openSnackBar();
       }
