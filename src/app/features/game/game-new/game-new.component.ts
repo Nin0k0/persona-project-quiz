@@ -76,6 +76,10 @@ export class GameNewComponent implements OnInit {
       });
       this.formArr.push(fcontrol);
     });
+    let shownIndex = this.getrandomIndexinString(this.currentQuestion.answer);
+    this.formArr.controls[shownIndex].setValue(
+      this.currentQuestion.answer.split('')[shownIndex]
+    );
   }
 
   main() {
@@ -170,5 +174,11 @@ export class GameNewComponent implements OnInit {
 
   PlayAgain() {
     this.getQuestions();
+  }
+
+  getrandomIndexinString(str: string) {
+    let min = 0;
+    let max = str.length - 1;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 }
