@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from '../services/auth.service';
+import { UsedEmailComponent } from '../used-email/used-email.component';
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +12,11 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {}
   RegisterForm = new FormGroup({
@@ -23,8 +29,19 @@ export class RegistrationComponent implements OnInit {
   });
   signUp() {
     const newUser: User = this.RegisterForm.value as User;
-    this.authService.signUp(newUser).subscribe((res) => console.log(res));
-    this.RegisterForm.reset();
-    this.router.navigateByUrl('auth/login');
+    this.authService.signUp(newUser).subscribe((res) => {
+      if (res == null) {
+        this.openSnackBar();
+      } else {
+        this.RegisterForm.reset();
+        this.router.navigateByUrl('auth/login');
+      }
+    });
+  }
+
+  openSnackBar() {
+    this.snackBar.openFromComponent(UsedEmailComponent, {
+      duration: 3000,
+    });
   }
 }

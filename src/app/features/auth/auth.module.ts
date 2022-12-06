@@ -11,9 +11,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { UsedEmailComponent } from './used-email/used-email.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegistrationComponent, ChoiceComponent],
+  declarations: [LoginComponent, RegistrationComponent, ChoiceComponent, UsedEmailComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

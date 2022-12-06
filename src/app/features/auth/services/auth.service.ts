@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, pipe } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 
 @Injectable({
@@ -11,7 +11,15 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   signUp(user: User) {
-    return this.http.post<User>(this.localURL, user);
+    return this.getUserByEmail(user.email).pipe(
+      map((userInDB) => {
+        if (userInDB) {
+          return null;
+        } else {
+          return this.http.post<User>(this.localURL, user);
+        }
+      })
+    );
   }
   private getUserByEmail(email: string): Observable<User | null> {
     return this.http
