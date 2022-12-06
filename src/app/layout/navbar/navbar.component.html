@@ -1,7 +1,9 @@
 <body>
   <nav class="navMenu">
     <a [routerLink]="'home'">Home</a>
-    <a *ngIf="user$ | async" [routerLink]="'admin'">Admin</a>
+    <a *ngIf="(user$ | async) && admin$ | async" [routerLink]="'admin'"
+      >Admin</a
+    >
     <a *ngIf="user$ | async" [routerLink]="'leaderboard'">Board</a>
     <a *ngIf="user$ | async" [routerLink]="'game'">Play</a>
     <a [routerLink]="'auth'" *ngIf="!(user$ | async)">Log in</a>

@@ -13,10 +13,11 @@ export class AuthService {
   signUp(user: User) {
     return this.getUserByEmail(user.email).pipe(
       map((userInDB) => {
-        if (userInDB) {
+        if (userInDB?.email) {
+          console.log('here');
           return null;
         } else {
-          return this.http.post<User>(this.localURL, user);
+          return this.http.post<User>(this.localURL, user as User).subscribe();
         }
       })
     );

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
+import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home/home.component';
 
@@ -24,7 +25,7 @@ const routes: Route[] = [
       import('./features/admin/admin.module').then(
         (module) => module.AdminModule
       ),
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, AdminGuard],
   },
   {
     path: 'leaderboard',

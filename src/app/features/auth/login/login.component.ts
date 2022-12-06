@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(loginUser).subscribe((data) => {
       if (data) {
-        this.loggedService.setLoggedUser(loginUser);
+        this.loggedService.setLoggedUser(data);
         this.loginForm.reset();
         this.router.navigateByUrl('leaderboard');
       } else {

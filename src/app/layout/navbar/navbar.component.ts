@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
     private router: Router
   ) {}
   user$ = this.checkUserLogin.user$;
+  admin$ = this.checkUserLogin.Admin$;
 
   logOut() {
     this.checkUserLogin.removeLoggedUser();
