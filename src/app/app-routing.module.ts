@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home/home.component';
 
 const routes: Route[] = [
@@ -23,6 +24,7 @@ const routes: Route[] = [
       import('./features/admin/admin.module').then(
         (module) => module.AdminModule
       ),
+    canLoad: [AuthGuard],
   },
   {
     path: 'leaderboard',
@@ -30,11 +32,13 @@ const routes: Route[] = [
       import('./features/leaderboard/leaderboard.module').then(
         (module) => module.LeaderboardModule
       ),
+    canLoad: [AuthGuard],
   },
   {
     path: 'game',
     loadChildren: () =>
       import('./features/game/game.module').then((module) => module.GameModule),
+    canLoad: [AuthGuard],
   },
 ];
 @NgModule({

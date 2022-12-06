@@ -1,6 +1,6 @@
 <body>
   <nav class="navMenu">
-    <a [routerLink]="''">Home</a>
+    <a [routerLink]="'home'">Home</a>
     <a *ngIf="user$ | async" [routerLink]="'admin'">Admin</a>
     <a *ngIf="user$ | async" [routerLink]="'leaderboard'">Board</a>
     <a *ngIf="user$ | async" [routerLink]="'game'">Play</a>
