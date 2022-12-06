@@ -21,13 +21,11 @@ export class AuthService {
   login(user: User) {
     return this.getUserByEmail(user.email).pipe(
       map((userInDB) => {
-        console.log(userInDB);
-        console.log(user);
         if (userInDB === null) {
           return null;
         }
         if (user.password === userInDB.password) {
-          return user;
+          return userInDB;
         }
         return null;
       })
@@ -36,5 +34,16 @@ export class AuthService {
 
   updateUser(user: User) {
     return this.http.put<User>(`${this.localURL}/${user.id}`, user);
+  }
+
+  getUser(email: string): Observable<User | null> {
+    return this.getUserByEmail(email).pipe(
+      map((userInDB) => {
+        if (userInDB === null) {
+          return null;
+        }
+        return userInDB;
+      })
+    );
   }
 }

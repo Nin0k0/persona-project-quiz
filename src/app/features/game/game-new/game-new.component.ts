@@ -8,6 +8,7 @@ import { CorrectComponent } from '../correct/correct.component';
 import { timer } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/services/auth.service';
+import { User } from 'src/app/interfaces/user';
 @Component({
   selector: 'app-game-new',
   templateUrl: './game-new.component.html',
@@ -21,7 +22,7 @@ export class GameNewComponent implements OnInit {
   questions!: Question[];
   currentQuestion!: Question;
   currentAnswerArr: string[] = [];
-  timeLeft: number = 10;
+  timeLeft: number = 15;
 
   isGameOver: boolean = false;
   constructor(
@@ -126,9 +127,8 @@ export class GameNewComponent implements OnInit {
   }
 
   observableTimer() {
-    const source = timer(1000, 2000);
+    const source = timer(1000, 1000);
     const abc = source.subscribe((val) => {
-      console.log(val, '-');
       if (this.subscribeTimer == 0) {
         this.isGameOver = true;
         this.getUserAndUpdateIFScoreHigher();
@@ -138,11 +138,14 @@ export class GameNewComponent implements OnInit {
   }
 
   getUserAndUpdateIFScoreHigher() {
-    let user = JSON.parse(localStorage.getItem('user')!);
-    console.log(user);
-    if (this.score > user.score) {
-      user.score = this.score;
-      this.authService.updateUser(user);
-    }
+    let user: User = JSON.parse(localStorage.getItem('user')!);
+    this.authService.getUser(user.email).subscribe((data) => {
+      if (data) {
+        if (data.score < this.score) {
+          data.score = this.score;
+          this.authService.updateUser(data);
+        }
+      }
+    });
   }
 }
