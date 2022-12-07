@@ -19,10 +19,10 @@ export class LeaderboardComponent implements OnInit {
     this.userService.getAllUsers()!.subscribe((response) => {
       this.users = response;
       this.users = this.users.sort((a, b) => (a.score > b.score ? -1 : 1));
-      // if (this.users.length > 10) {
-      //   this.users = this.users.splice(0, 10);
-      // }
-      //მეგონა TOP 10 გვინდოდა
+      if (this.users.length > 10) {
+        this.users = this.users.splice(0, 10);
+      }
+      //TOP 10
     });
   }
 }

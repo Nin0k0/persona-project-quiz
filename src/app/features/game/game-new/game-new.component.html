@@ -1,13 +1,12 @@
 <div *ngIf="!isGameOver">
-  <h2>Score : {{ score }}</h2>
-</div>
-<div *ngIf="!isGameOver">
-  <h2 style="float: right; margin-right: 5%">
-    <i class="fa fa-clock-o"></i> {{ subscribeTimer }}
-  </h2>
-</div>
-
-<div *ngIf="!isGameOver">
+  <div>
+    <h2>Score : {{ score }}</h2>
+  </div>
+  <div>
+    <h2 style="float: right; margin-right: 5%">
+      <i class="fa fa-clock-o"></i> {{ subscribeTimer }}
+    </h2>
+  </div>
   <div *ngFor="let question of questions; let i = index">
     <div class="question" *ngIf="currentQuestion.answer === question.answer">
       <div class="par">

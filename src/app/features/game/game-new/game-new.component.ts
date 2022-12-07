@@ -137,7 +137,7 @@ export class GameNewComponent implements OnInit {
   }
   openSnackBar() {
     this.snackBar.openFromComponent(CorrectComponent, {
-      duration: 300000,
+      duration: 3000,
     });
   }
 
