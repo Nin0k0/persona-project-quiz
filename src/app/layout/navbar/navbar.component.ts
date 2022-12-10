@@ -13,11 +13,13 @@ export class NavbarComponent implements OnInit {
     private router: Router
   ) {}
   user$ = this.checkUserLogin.user$;
-  admin$ = this.checkUserLogin.Admin$;
+  admin$ = localStorage.getItem('isAdmin');
 
   logOut() {
     this.checkUserLogin.removeLoggedUser();
     this.router.navigateByUrl('home');
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.admin$);
+  }
 }
